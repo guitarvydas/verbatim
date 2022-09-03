@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+textarea {
+}
+</style>
+</head>
+<body>
+
+<h1>Verbatim Example</h1>
+<button onclick="generate ()">Generate</button>
+
+<br>
+<p id="status" > READY </p>
+<br>
+
+<p>Source:</p>
+<textarea id="src" rows="17" cols="40" placeholder="source file" style="background-color:oldlace;">
+</textarea>
+
+<p>output: (transpiled, stripped)</p>
+<textarea id="transpiled" rows="12" cols="30" placeholder="transpiled output" style="background-color:oldlace;">
+</textarea>
+
+<textarea id="stripped" rows="12" cols="30" placeholder="stripped output" style="background-color:oldlace;">
+</textarea>
+<textarea id="value" rows="5" cols="30" placeholder="evaluated" style="background-color:oldlace;">
+</textarea>
+
+
+<br>
+<br>
+<br>
+
+<!-- Ohm-JS -->
+    <script src="https://unpkg.com/ohm-js@16/dist/ohm.min.js"></script>
+
+
+<!-- transpiler -->
+    <script src="fmt-js/fmt-js.js"></script>
+    <script src="fmt-js/transpile.js"></script>
+    <script src="fmt-js/panic.js"></script>
+
+<!-- utilities -->
+    <script src="compile.js"></script>
+
+<!-- mechanisms -->
+    
+<!-- passes -->
+
+<!-- source code -->
+    <script src="src.js"></script>
+<!-- grammar -->
+    <script src="grammar.js"></script>
+<!-- formatter -->
+    <script src="fmt.js"></script>
+
+<script>
+
+  function test (infield, outfield, grammarName, grammar, fmt) {
+      inputsrc = document.getElementById(infield).value;
+      [success, transpiled, errormessage] = transpile (inputsrc, grammarName, grammar, fmt);
+      if (success) {
+          document.getElementById(outfield).value = transpiled;
+          document.getElementById('status').innerHTML = "OK";
+          return [true, transpiled];
+      } else {
+          document.getElementById(outfield).value = transpiled;
+          document.getElementById('status').innerHTML = "FAILED " + errormessage;
+          return [false, transpiled];
+      }
+  }
+  
+  function generate () {
+      document.getElementById('src').innerHTML = src;
+
+      let r = undefined;
+      let transpiled = '';
+      [r, transpiled] = test ('src', 'transpiled', 'Tester', grammar, fmt);
+
+      var stripped = transpiled.replace (/⟪/g,'').replace (/⟫/g,'');
+      document.getElementById('stripped').innerHTML = stripped;
+      let compiled = compile (stripped);
+      let val = loadAndRun (compiled);
+      document.getElementById('value').innerHTML = val;
+  }
+
+  </script>
+</body>
+</html>
+
+
