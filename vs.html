@@ -20,12 +20,12 @@ textarea {
 </textarea>
 
 <p>output: (transpiled, stripped)</p>
-<textarea id="transpiled" rows="12" cols="30" placeholder="transpiled output" style="background-color:oldlace;">
+<textarea id="transpiled" rows="12" cols="40" placeholder="transpiled output" style="background-color:oldlace;">
 </textarea>
 
-<textarea id="stripped" rows="12" cols="30" placeholder="stripped output" style="background-color:oldlace;">
+<textarea id="stripped" rows="12" cols="40" placeholder="stripped output" style="background-color:oldlace;">
 </textarea>
-<textarea id="value" rows="5" cols="30" placeholder="evaluated" style="background-color:oldlace;">
+<textarea id="value" rows="5" cols="40" placeholder="evaluated" style="background-color:oldlace;">
 </textarea>
 
 
@@ -79,7 +79,7 @@ textarea {
       let transpiled = '';
       [r, transpiled] = test ('src', 'transpiled', 'Tester', grammar, fmt);
 
-      var stripped = transpiled.replace (/⟪/g,'').replace (/⟫/g,'');
+      var stripped = transpiled.replace (/⟪/g,'').replace (/⟫\n/g,'').replace (/⟫/g,'');
       document.getElementById('stripped').innerHTML = stripped;
       let compiled = compile (stripped);
       let val = loadAndRun (compiled);
