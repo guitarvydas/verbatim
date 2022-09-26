@@ -1,6 +1,9 @@
 function compile (s) {
-    console.log (s);
-    return eval ('(' + s + ')');
+    if (s) {
+	return eval ('(' + s + ')');
+    } else {
+	return '<no value>';
+    }
 }
 
 function loadAndRun (f) {

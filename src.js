@@ -3,7 +3,7 @@ a b
 «
   {
     run : function () {
-      var h = 'hello';
+      «var h = 'hello';»
         «
           var w = 'world';
         »
@@ -13,4 +13,5 @@ a b
 »
 c d
 `;
-const simple_src = String.raw`"abc"`;
+const src_42 = String.raw`«42»`;
+const src_nothing = String.raw`42`;
