@@ -58,17 +58,13 @@ textarea {
 
 <script>
 
-  function test (infield, outfield, grammarName, grammar, fmt) {
-      inputsrc = document.getElementById(infield).value;
-      [success, transpiled, errormessage] = transpile (inputsrc, grammarName, grammar, fmt);
+  function test (inputsrc, grammarName, grammar, fmt) {
+      [success, transpiled, errormessage] = transpile (inputsrc, grammarName, grammar, fmt, ohm, compilefmt);
       if (success) {
-          document.getElementById(outfield).value = transpiled;
-          document.getElementById('status').innerHTML = "OK";
-          return [true, transpiled];
+          return [true, "OK", transpiled];
       } else {
-          document.getElementById(outfield).value = transpiled;
-          document.getElementById('status').innerHTML = "FAILED " + errormessage;
-          return [false, transpiled];
+
+          return [false, "FAILED " + errormessage, transpiled];
       }
   }
   
@@ -77,13 +73,16 @@ textarea {
 
       let r = undefined;
       let transpiled = '';
-      [r, transpiled] = test ('src', 'transpiled', 'Tester', grammar, fmt);
-
-      var stripped = transpiled.replace (/⟪/g,'').replace (/⟫\n/g,'').replace (/⟫/g,'');
-      document.getElementById('stripped').innerHTML = stripped;
-      let compiled = compile (stripped);
-      let val = loadAndRun (compiled);
-      document.getElementById('value').innerHTML = val;
+      [r, status, transpiled] = test (src, 'Tester', grammar, fmt);
+      document.getElementById('status').innerHTML = status;
+      document.getElementById('transpiled').innerHTML = transpiled;
+      if (r) {
+	  var stripped = transpiled.replace (/«/g,'').replace (/»/g,'');
+	  document.getElementById('stripped').innerHTML = stripped;
+	  let compiled = compile (stripped);
+	  let val = loadAndRun (compiled);
+	  document.getElementById('value').innerHTML = val;
+      }
   }
 
   </script>

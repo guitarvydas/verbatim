@@ -1,7 +1,12 @@
 function compile (s) {
+    console.log (s);
     return eval ('(' + s + ')');
 }
 
 function loadAndRun (f) {
-    return f.run ();
+    if (f.run) {
+	return f.run ();
+    } else {
+	return f;
+    }
 }
