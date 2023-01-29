@@ -1,0 +1,13 @@
+Verbatim {
+  toplevel [x+] = ‛«x»’
+  verbatimspace_nested [lv v+ rv] = ‛«lv»«v»«rv»’
+  verbatimspace_empty [lv rv] = ‛«lv»«rv»’
+  verbatimspace_leaf [c] = ‛«c»’
+  verbatim_nested [lv v+ rv] = ‛«lv»«v»«rv»’
+  verbatim_empty [lv rv] = ‛«lv»«rv»’
+  verbatim_leaf [c] = ‛«c»’
+  anychar [c] = ‛«c»’
+
+  lv [c] = ‛«c»’
+  rv [c] = ‛«c»’
+}

@@ -3,6 +3,6 @@ _*
 .DS_Store*
 node_modules/*
 *.mov
-fmt-js/
+fab/
 junk.*
 junk*

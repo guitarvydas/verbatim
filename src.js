@@ -1,4 +1,3 @@
-const src = String.raw`
 a b 
 «
   {
@@ -12,6 +11,3 @@ a b
   }
 »
 c d
-`;
-const src_42 = String.raw`«42»`;
-const src_nothing = String.raw`42`;

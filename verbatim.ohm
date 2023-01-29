@@ -1,0 +1,15 @@
+Verbatim {
+  toplevel = verbatimspace+
+  verbatimspace = 
+    | lv verbatim+ rv -- nested
+    | lv rv -- empty
+    | anychar -- leaf
+  verbatim = 
+    | lv verbatim+ rv -- nested
+    | lv rv -- empty
+    | anychar         -- leaf
+  anychar= ~lv ~rv any
+
+  lv = "\u{00ab}" // "«"
+  rv = "\u{00bb}" // "»"
+}
