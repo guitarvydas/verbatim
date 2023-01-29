@@ -4,5 +4,6 @@ _*
 node_modules/*
 *.mov
 fmt-js/
+fab/
 junk.*
 junk*
