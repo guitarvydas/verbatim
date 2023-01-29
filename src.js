@@ -1,13 +1,7 @@
-a b 
-«
-  {
-    run : function () {
-      «var h = 'hello';»
-        «
-          var w = 'world';
-        »
-          «return (h + ' ' + w);»
-    }
-  }
-»
-c d
+function run  () {
+    «var h = 'hello';
+     «var w = 'world';»»
+    «return (`${h} ${w}`);»
+}
+console.log (run ());
+
