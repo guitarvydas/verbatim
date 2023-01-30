@@ -3,7 +3,6 @@ all: vtest
 
 vtest:
 	./fab/fab ${here}/verbatim.ohm ${here}/verbatim.fab ${here}/emptysupport.js <${here}/src.js \
-	| ./vstrip \
 	> junk.js
 	@echo
 	@echo '*** source file ***'
@@ -13,7 +12,11 @@ vtest:
 	@echo '*** transpiled file ***'
 	@cat junk.js
 	@echo
-	@node junk.js
+	@echo
+	@echo '*** stripped file ***'
+	@./vstrip <junk.js >junk2.js
+	@cat junk2.js
+	@echo
 
 identity:
 	./fab/fab ${here}/verbatim.ohm ${here}/identity-verbatim.fab ${here}/emptysupport.js <${here}/src.js
